@@ -8,7 +8,7 @@ import random
 # You don't need to call the AI directly
 # ============================================
 
-model = tf.saved_model.load('./twitter hivemind_electraV2')
+model = tf.saved_model.load('./twitter hivemind_electra')
 
 roasts = [
         "I've heard better opinions from Alexa", 

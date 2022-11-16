@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 # ===========================================
 # Augments data for AI if there isn't enough.
@@ -9,6 +10,13 @@ df = pd.read_csv('new data/best result.csv')
 print(len(df))
 tweets = df[df['result']==0]
 print(len(tweets))
+
+# Have the amound of positive labels equal to the positive ones.
+random = 10
+percentage_to_remove = 0.1
+
+positive_tweets = df[df['result']==1]
+df = positive_tweets.sample(frac=percentage_to_remove, random_state=random)
 
 words_to_replace = {
     "good": ["fine", "acceptable", "excellent", "exceptional", "great", "marvelous", "satisfactory", "superb", "wonderful"],
@@ -65,6 +73,7 @@ for tweet in tweets['tweet']:
                 new_dict['result'].append(0)
 
 new_new_dict = {'tweet': [], 'replies': [], 'retweets': [], 'likes': [], 'ratio': [], 'result':[]}
+
 
 # Sometimes, a tweet will have multiple words that can be replaced.
 # This will create variations with or without those words.
